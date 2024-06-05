@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app
+    id="Persons" version="2.4"
+    xmlns="http://java.sun.com/xml/ns/j2ee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee
+     http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+  <servlet>
+    <servlet-name>persons</servlet-name>
+    <servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>
+    <init-param>
+      <param-name>jersey.config.server.provider.packages</param-name>
+      <param-value>ch.abacus.sql.rest.jersey</param-value>
+    </init-param>
+    <init-param>
+      <param-name>javax.ws.rs.Application</param-name>
+      <param-value>ch.abacus.restapi.jersey.JerseyConfig</param-value> <!-- anpassen, wenn sich die config class ändert -->
+    </init-param>
+    <load-on-startup>1</load-on-startup>
+    <!-- Auskommentieren und darueber disablen umm mit purem HttpServelt ohne Jersey API zu arbeiten -->
+    <!--<servlet-class>ch.abacus.sql.rest.http.PersonHttpServlet</servlet-class>-->
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>persons</servlet-name>
+    <url-pattern>/api/*</url-pattern>
+  </servlet-mapping>
+</web-app>
