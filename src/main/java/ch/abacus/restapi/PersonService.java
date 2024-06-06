@@ -29,7 +29,7 @@ public interface PersonService {
 
   void deleteById(@Nonnull final Long id);
 
-  void save(@Nonnull final PersonDTO personDTO) throws JsonProcessingException;
+  PersonDTO save(@Nonnull final PersonDTO personDTO) throws JsonProcessingException;
 
-  void update(@Nonnull final Long id, @Nonnull final PersonDTO personDTO) throws JsonProcessingException;
+  PersonDTO update(@Nonnull final Long id, @Nonnull final PersonDTO personDTO) throws JsonProcessingException;
 }

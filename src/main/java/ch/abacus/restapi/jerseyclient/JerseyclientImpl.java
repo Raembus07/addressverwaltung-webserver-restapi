@@ -57,26 +57,28 @@ public class JerseyclientImpl implements PersonService {
   }
 
   @Override
-  public void save(@Nonnull PersonDTO personDTO) {
+  public PersonDTO save(@Nonnull PersonDTO personDTO) {
     try (Response response = client.target(RestapiConst.REST_URL)
         .request(MediaType.APPLICATION_JSON)
         .put(Entity.json(personDTO))) {
       if (response.getStatus() == Response.Status.OK.getStatusCode()) {
-        response.readEntity(PersonDTO.class);
+        return response.readEntity(PersonDTO.class);
       } else {
+        return personDTO;
       }
     }
   }
 
   @Override
-  public void update(@Nonnull Long id, @Nonnull PersonDTO personDTO) {
+  public PersonDTO update(@Nonnull Long id, @Nonnull PersonDTO personDTO) {
     try (Response response = client.target(RestapiConst.REST_URL)
         .path(String.valueOf(id))
         .request(MediaType.APPLICATION_JSON)
         .post(Entity.json(personDTO))) {
       if (response.getStatus() == Response.Status.OK.getStatusCode()) {
-        response.readEntity(PersonDTO.class);
+        return response.readEntity(PersonDTO.class);
       } else {
+        return personDTO;
       }
     }
   }
